@@ -1,0 +1,7 @@
+.parent{
+    -fx-background-color: linear-gradient(to right,#ffd89b, #19547b);
+}
+
+.button{
+    -fx-background-color: #FFB300;
+}
