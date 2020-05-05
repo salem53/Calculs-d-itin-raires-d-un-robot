@@ -12,6 +12,7 @@ public class FloydWarshall {
 
     private final int size;
 
+    public static boolean isReachable = true;
 
     private HashMap<GridNode, List<Relation>> dict = new HashMap<>();
 
@@ -33,7 +34,6 @@ public class FloydWarshall {
 
     public FloydWarshall() {
         preds.clear();
-
         copyToList();
         new SetupRelations(gridNodeCopy);
         System.out.println("relation list size:" + Relation.RelationsList.size());
@@ -122,9 +122,6 @@ public class FloydWarshall {
                 }
             }
 
-            printDistance();
-            System.out.print("\n\n");
-
 
             /*
             For testing purposes
@@ -186,6 +183,7 @@ public class FloydWarshall {
             if (pred.equals("0")) {
                 //TODO make a window appear that handles the error of no path existence
                 System.out.println("Unreachable!");
+                isReachable = false;
                 return;
             }
             if (pred.equals(start.getName())) {

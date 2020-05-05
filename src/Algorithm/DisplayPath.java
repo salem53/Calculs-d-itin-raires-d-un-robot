@@ -3,17 +3,34 @@ package Algorithm;
 
 import Grid.GridNode;
 import javafx.scene.paint.Color;
+import utils.ProjectColors;
 
 
 public class DisplayPath {
 
-    private final Color shortestPathColor = Color.BLUE;
+    private final Color shortestPathColor = Color.INDIGO;
 
     public DisplayPath() {
+        if (!FloydWarshall.isReachable) {
+            //TODO
+            System.out.println("cant display cause unreachable");
+            return;
+        }
+        removeStartAndEndNodes();
         resetPathColoring();
         colorShortestPath();
     }
 
+    private void removeStartAndEndNodes() {
+        try {
+            FloydWarshall.preds.remove(GridNode.getStartingNode().getName());
+            FloydWarshall.preds.remove(GridNode.getEndingNode().getName());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
     private GridNode getNodeByName(String s) {
         for (GridNode node : GridNode.nodesList) {
@@ -36,7 +53,8 @@ public class DisplayPath {
 
     private void resetPathColoring() {
         for (GridNode node : GridNode.nodesList) {
-            node.setColor(Color.WHITESMOKE);
+            if (node.getColor() == ProjectColors.pathColor)
+                node.setColor(Color.WHITESMOKE);
         }
     }
 }
