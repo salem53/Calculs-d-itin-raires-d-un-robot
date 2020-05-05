@@ -8,28 +8,27 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="389.0" prefWidth="507.0" style=";" styleClass="parent" stylesheets="@../css/startStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StartController">
-   <AnchorPane prefHeight="389.0" prefWidth="507.0" style=";" styleClass="parent" stylesheets="@../css/startStyle.css">
-      <AnchorPane layoutX="253.0" layoutY="59.0" prefHeight="270.0" prefWidth="273.0">
-         <TextField fx:id="width" layoutX="62.0" layoutY="162.0" promptText="width" />
-         <ImageView fitHeight="57.0" fitWidth="62.0" layoutX="108.0" layoutY="26.0" pickOnBounds="true"
-                    preserveRatio="true">
-            <Image url="@../Assets/robot.png"/>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="537.0" prefWidth="761.0" style=";" styleClass="parent" stylesheets="@../css/startStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StartController">
+   <AnchorPane prefHeight="389.0" prefWidth="782.0" style=";" styleClass="parent" stylesheets="@../css/startStyle.css">
+      <AnchorPane layoutX="421.0" layoutY="93.0" prefHeight="409.0" prefWidth="312.0">
+         <TextField fx:id="width" layoutX="71.0" layoutY="228.0" prefHeight="34.0" prefWidth="189.0" promptText="width" />
+         <ImageView fitHeight="64.0" fitWidth="74.0" layoutX="134.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../Assets/robot.png" />
          </ImageView>
-         <Button layoutX="93.0" layoutY="209.0" mnemonicParsing="false" onAction="#confirm" styleClass="parent" stylesheets="@../css/startStyle.css" text="Confirm">
+         <Button layoutX="104.0" layoutY="295.0" mnemonicParsing="false" onAction="#confirm" prefHeight="51.0" prefWidth="123.0" styleClass="parent" stylesheets="@../css/startStyle.css" text="Confirm">
             <font>
                <Font name="SansSerif Regular" size="18.0" />
             </font>
          </Button>
-         <TextField fx:id="height" layoutX="62.0" layoutY="123.0" promptText="height" />
+         <TextField fx:id="height" layoutX="71.0" layoutY="171.0" prefHeight="34.0" prefWidth="189.0" promptText="height" />
       </AnchorPane>
-      <ImageView fitHeight="387.0" fitWidth="260.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="647.0" fitWidth="395.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@../Assets/wall-e-toy-on-beige-pad-2103864.jpg" />
       </ImageView>
-      <Button fx:id="closeButton" layoutX="473.0" layoutY="1.0" mnemonicParsing="false" onAction="#close" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-border-color: transparent;">
+      <Button fx:id="closeButton" layoutX="706.0" layoutY="28.0" mnemonicParsing="false" onAction="#close" prefHeight="42.0" prefWidth="54.0" style="-fx-background-color: transparent; -fx-text-fill: transparent; -fx-border-color: transparent;">
          <graphic>
-            <ImageView fitHeight="21.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../Assets/close.png"/>
+            <ImageView fitHeight="31.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@../Assets/close.png" />
             </ImageView>
          </graphic>
       </Button>

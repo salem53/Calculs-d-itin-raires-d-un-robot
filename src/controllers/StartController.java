@@ -20,6 +20,7 @@ public class StartController {
 
     private static final int MIN_VALUE = 4;
     private static final int MAX_VALUE = 20;
+    private static final double CELL_SIZE = 100;
     private double xOffset = 0;
     private double yOffset = 0;
     public static Scene scene;
@@ -48,9 +49,9 @@ public class StartController {
             Parent root = FXMLLoader.load(getClass().getResource("../views/grid.fxml"));
 
             Stage stage = (Stage) closeButton.getScene().getWindow();
-            gridManager.makeGrid(100, heightValue, widthValue, 20);
+            gridManager.makeGrid(CELL_SIZE, heightValue, widthValue, 20);
 
-            scene = new Scene(root, 1020, 700);
+            scene = new Scene(root, CELL_SIZE * widthValue + 40, CELL_SIZE * heightValue + 60);
             VBox vbox = (VBox) scene.lookup("#vbox");
             vbox.getChildren().add(gridManager.getGrid());
 
@@ -59,7 +60,7 @@ public class StartController {
             stage.show();
 
             //make the window movable
-            root.setOnMousePressed(event -> {
+           /* root.setOnMousePressed(event -> {
                 xOffset = event.getSceneX();
                 yOffset = event.getSceneY();
             });
@@ -70,7 +71,7 @@ public class StartController {
                     stage.setX(event.getScreenX() - xOffset);
                     stage.setY(event.getScreenY() - yOffset);
                 }
-            });
+            });*/
         } else System.out.println("ERR");
     }
 

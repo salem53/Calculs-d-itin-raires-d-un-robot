@@ -18,7 +18,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("../views/start.fxml"));
         //for a borderless window
         //primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setScene(new Scene(root, 507, 389));
+        primaryStage.setScene(new Scene(root, 762, 542));
         primaryStage.show();
 
         //make the window movable
