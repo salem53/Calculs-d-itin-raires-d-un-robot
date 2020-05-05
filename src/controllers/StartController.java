@@ -12,13 +12,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
 
 public class StartController {
 
+    private static final int MIN_VALUE = 4;
+    private static final int MAX_VALUE = 20;
     private double xOffset = 0;
     private double yOffset = 0;
     public static Scene scene;
@@ -48,8 +49,6 @@ public class StartController {
 
             Stage stage = (Stage) closeButton.getScene().getWindow();
             gridManager.makeGrid(100, heightValue, widthValue, 20);
-            new SetupGridNodes(gridManager);
-
 
             scene = new Scene(root, 1020, 700);
             VBox vbox = (VBox) scene.lookup("#vbox");
@@ -81,18 +80,14 @@ public class StartController {
         if (!(t.getText() == null || t.getText().length() == 0)) {
             try {
                 int d = Integer.parseInt(t.getText());
-                if (4 < d && d < 10) {
+                if (MIN_VALUE <= d && d <= MAX_VALUE) {
                     b = true;
-                }
-                else System.out.println("Must be between 4 and 10");
-            }
-            catch (NumberFormatException e) {
+                } else System.out.println("Must be between 4 and 20");
+            } catch (NumberFormatException e) {
                 System.out.println("Not a Number");
             }
         }
         return b;
     }
-
-
 
 }

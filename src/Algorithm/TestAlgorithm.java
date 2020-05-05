@@ -1,21 +1,23 @@
 package Algorithm;
 
 import Grid.GridNode;
-import Relation.Relation;
+import RelationManager.Relation;
 import javafx.scene.paint.Color;
 
 public class TestAlgorithm {
 
     public TestAlgorithm() {
-        GridNode node1 = new GridNode(0, 0, false, false
-                , true, 3, Color.ALICEBLUE);
-        GridNode node2 = new GridNode(0, 0, false, false
-                , false, 3, Color.ALICEBLUE);
-        GridNode node3 = new GridNode(0, 0, false, false
-                , false, 3, Color.ALICEBLUE);
-        GridNode node4 = new GridNode(0, 0, false, true
-                , false, 3, Color.ALICEBLUE);
+        GridNode node1 = new GridNode(0, 0, 3, Color.ALICEBLUE);
+        GridNode node2 = new GridNode(0, 0, 3, Color.ALICEBLUE);
+        GridNode node3 = new GridNode(0, 0, 3, Color.ALICEBLUE);
+        GridNode node4 = new GridNode(0, 0, 3, Color.ALICEBLUE);
 
+        node1.setStart(true);
+        node4.setEnd(true);
+        GridNode.nodesList.add(node1);
+        GridNode.nodesList.add(node2);
+        GridNode.nodesList.add(node3);
+        GridNode.nodesList.add(node4);
 
         new Relation(GridNode.nodesList.get(0),
                 GridNode.nodesList.get(1));

@@ -1,4 +1,4 @@
-package Relation;
+package RelationManager;
 
 import Grid.GridNode;
 

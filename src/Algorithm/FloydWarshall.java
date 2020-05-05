@@ -1,7 +1,7 @@
 package Algorithm;
 
 import Grid.GridNode;
-import Relation.Relation;
+import RelationManager.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,20 +29,34 @@ public class FloydWarshall {
 
     public static List<String> preds = new ArrayList<>();
 
+    private List<GridNode> gridNodeCopy = new ArrayList<>();
 
     public FloydWarshall() {
         preds.clear();
-        this.size = GridNode.nodesList.size();
+
+        copyToList();
+        new SetupRelations(gridNodeCopy);
+        System.out.println("relation list size:" + Relation.RelationsList.size());
+        this.size = gridNodeCopy.size();
         P = new String[size + 1][size + 1];
         distance = new int[size][size];
+
         initFloyd();
+    }
+
+    private void copyToList() {
+        for (GridNode gridNode : GridNode.nodesList) {
+            if (!gridNode.isObstacle()) {
+                gridNodeCopy.add(gridNode);
+            }
+        }
     }
 
     private void initFloyd() {
         P[0][0] = " ";
         for (int i = 1; i < size + 1; i++) {
-            P[i][0] = GridNode.nodesList.get(i - 1).getName();
-            P[0][i] = GridNode.nodesList.get(i - 1).getName();
+            P[i][0] = gridNodeCopy.get(i - 1).getName();
+            P[0][i] = gridNodeCopy.get(i - 1).getName();
         }
         for (Relation relation : Relation.RelationsList) {
             if (!dict.containsKey(relation.getStart())) {
@@ -50,7 +64,7 @@ public class FloydWarshall {
             }
             dict.get(relation.getStart()).add(relation);
         }
-        ConstructArray(GridNode.nodesList, Relation.RelationsList);
+        ConstructArray(gridNodeCopy, Relation.RelationsList);
     }
 
     private final int INF = Integer.MAX_VALUE;
@@ -108,7 +122,7 @@ public class FloydWarshall {
                 }
             }
 
-            printP();
+            printDistance();
             System.out.print("\n\n");
 
 
@@ -140,8 +154,8 @@ public class FloydWarshall {
 
     //For testing purposes, display P matrix
     private void printP() {
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
+        for (int i = 0; i < size + 1; i++) {
+            for (int j = 0; j < size + 1; j++) {
                 System.out.print(P[i][j] + " ");
             }
             System.out.print("\n");

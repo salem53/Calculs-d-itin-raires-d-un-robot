@@ -1,18 +1,12 @@
 package main;
 
-import Grid.GridManager;
-import Grid.SetupGridNodes;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
-import java.io.IOException;
 
 public class Main extends Application {
 
@@ -20,7 +14,7 @@ public class Main extends Application {
     private double yOffset = 0;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../views/start.fxml"));
         //for a borderless window
         //primaryStage.initStyle(StageStyle.UNDECORATED);
@@ -40,6 +34,8 @@ public class Main extends Application {
                 primaryStage.setY(event.getScreenY() - yOffset);
             }
         });
+        //new TestAlgorithm();
+
 
     }
 

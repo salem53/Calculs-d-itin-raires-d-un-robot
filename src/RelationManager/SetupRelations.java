@@ -1,17 +1,16 @@
-package Relation;
+package RelationManager;
 
 
 import Grid.GridNode;
 
+import java.util.List;
 import java.util.ListIterator;
 
-import static Grid.GridNode.nodesList;
-
 public class SetupRelations {
-    
-    public SetupRelations() {
-        ListIterator<GridNode> listItr = nodesList.listIterator();
-        ListIterator<GridNode> Itr = nodesList.listIterator();
+
+    public SetupRelations(List<GridNode> gridNodeList) {
+        ListIterator<GridNode> listItr = gridNodeList.listIterator();
+        ListIterator<GridNode> Itr = gridNodeList.listIterator();
         while (listItr.hasNext()) {
             GridNode hmm = listItr.next();
             if (!(hmm.isObstacle())) {
@@ -24,6 +23,7 @@ public class SetupRelations {
                 }
             }
         }
+        System.out.println("relation number:" + Relation.RelationsList);
     }
 
     public boolean IsNeighbor(GridNode s, GridNode e) {
