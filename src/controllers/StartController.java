@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -83,9 +84,22 @@ public class StartController {
                 int d = Integer.parseInt(t.getText());
                 if (MIN_VALUE <= d && d <= MAX_VALUE) {
                     b = true;
-                } else System.out.println("Must be between 4 and 20");
+                } else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Input Error");
+                    alert.setContentText("Must be between 4 and 20");
+
+                    alert.showAndWait();
+                    System.out.println("Must be between 4 and 20");
+                }
             } catch (NumberFormatException e) {
-                System.out.println("Not a Number");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Input Error");
+                alert.setContentText("Must be a number");
+
+                alert.showAndWait();
             }
         }
         return b;
