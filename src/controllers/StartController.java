@@ -51,10 +51,9 @@ public class StartController {
             Stage stage = (Stage) closeButton.getScene().getWindow();
             gridManager.makeGrid(CELL_SIZE, heightValue, widthValue, 20);
 
-            scene = new Scene(root, CELL_SIZE * widthValue + 40, CELL_SIZE * heightValue + 60);
+            scene = new Scene(root, CELL_SIZE * widthValue + 40, CELL_SIZE * heightValue + 96);
             VBox vbox = (VBox) scene.lookup("#vbox");
             vbox.getChildren().add(gridManager.getGrid());
-
             new SetupGridNodes(gridManager);
             stage.setScene(scene);
             stage.show();
@@ -72,6 +71,7 @@ public class StartController {
                     stage.setY(event.getScreenY() - yOffset);
                 }
             });*/
+
         } else System.out.println("ERR");
     }
 

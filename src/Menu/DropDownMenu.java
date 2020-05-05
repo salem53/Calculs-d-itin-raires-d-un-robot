@@ -71,14 +71,6 @@ public class DropDownMenu {
                     if (GridNode.getEndingNode() == null && !gridNode.isObstacle() && !gridNode.isStart()) {
                         gridNode.setColor(ProjectColors.endColor);
                         gridNode.setEnd(true);
-
-
-                        //TODO
-                        new FloydWarshall();
-                        new DisplayPath();
-                        //TODO
-
-
                     } else if (GridNode.getEndingNode() != null) {
                         System.out.println("end node already exist ");
                     } else

@@ -34,9 +34,6 @@ public class Main extends Application {
                 primaryStage.setY(event.getScreenY() - yOffset);
             }
         });
-        //new TestAlgorithm();
-
-
     }
 
     public static void main(String[] args) {
