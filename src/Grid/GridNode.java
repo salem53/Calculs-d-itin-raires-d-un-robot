@@ -9,14 +9,17 @@ import java.util.List;
 public class GridNode {
 
     public static List<GridNode> nodesList = new ArrayList<>();
-    public static int startNodeCount =0;
-    public static int  endNodeCount =0 ;
+    public static int startNodeCount = 0;
+    public static int endNodeCount = 0;
+
 
     public static int nodeCount = 1;
 
     protected boolean isObstacle;
     protected boolean isStart;
     protected boolean isEnd;
+
+    protected Color nodeColor;
 
     public String getName() {
         return name;
@@ -36,12 +39,9 @@ public class GridNode {
                     double radius, Color color) { //used only this
         this.x = x;
         this.y = y;
-        this.isObstacle = isObstacle;
-        this.isStart = isStart;
-        this.isEnd = isEnd;
         this.name = String.valueOf(nodeCount++);
         constructShape(radius, color);
-        
+
 
     }
 
@@ -50,6 +50,7 @@ public class GridNode {
         shapeSize = radius;
         shape.setRadius(shapeSize);
         shape.setFill(color);
+        this.nodeColor = color;
     }
 
 
@@ -58,14 +59,13 @@ public class GridNode {
         shape.setRadius(shapeSize);
     }
 
-    public void setColor(int red, int green, int blue) {
-        shape.setFill(Color.rgb(red, green, blue));
-
-    }
-    
     public void setColor(Color color) {
         shape.setFill(color);
+        this.nodeColor = color;
+    }
 
+    public Color getColor() {
+        return this.nodeColor;
     }
 
     public double getX() {
@@ -132,9 +132,10 @@ public class GridNode {
         }
         return null;
     }
-    public static GridNode getGridNodeByXY(double x , double y ){
+
+    public static GridNode getGridNodeByXY(double x, double y) {
         for (GridNode node : nodesList) {
-            if (node.getX()==x && node.getY()==y) {
+            if (node.getX() == x && node.getY() == y) {
                 return node;
             }
         }
