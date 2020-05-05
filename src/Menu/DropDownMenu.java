@@ -1,5 +1,6 @@
 package Menu;
 
+import Algorithm.DisplayPath;
 import Algorithm.FloydWarshall;
 import Grid.GridNode;
 import Grid.GridSearch;
@@ -10,14 +11,13 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.paint.Color;
 import javafx.stage.Window;
-
-import java.awt.*;
+import utils.ProjectColors;
 
 
 public class DropDownMenu {
 
 
-    private ContextMenu menu;
+    private final ContextMenu menu;
     /*private final String[] menuList = {"Set as obstacle", "Set as start", "Set as end", "delete node"};*/
 
     public DropDownMenu(Window window, double x, double y, Node node) {
@@ -31,12 +31,12 @@ public class DropDownMenu {
             public void handle(ActionEvent event) {
                 if (gridNode != null) {
                     if (!gridNode.isObstacle() && !gridNode.isStart() && !gridNode.isEnd()) {
-                        gridNode.setColor(255, 0, 0);
+                        gridNode.setColor(ProjectColors.obstacleColor);
                         gridNode.setObstacle(true);
                     } else
                         System.out.println("node isn't empty ");
 
-                } else if (gridNode == null) {
+                } else {
                     System.out.println("problem");
                 }
 
@@ -49,15 +49,15 @@ public class DropDownMenu {
         menuItem2.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 if (gridNode != null) {
-                    if (gridNode.getStartingNode() == null && !gridNode.isObstacle() && !gridNode.isEnd()) {
-                        gridNode.setColor(0, 255, 0);
+                    if (GridNode.getStartingNode() == null && !gridNode.isObstacle() && !gridNode.isEnd()) {
+                        gridNode.setColor(ProjectColors.startColor);
                         gridNode.setStart(true);
-                    } else if (gridNode.getStartingNode() != null) {
+                    } else if (GridNode.getStartingNode() != null) {
                         System.out.println("start node already exist ");
                     } else
                         System.out.println("node isn't empty ");
 
-                } else if (gridNode == null) {
+                } else {
                     System.out.println("problem");
                 }
 
@@ -68,22 +68,23 @@ public class DropDownMenu {
         menuItem3.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 if (gridNode != null) {
-                    if (gridNode.getEndingNode() == null && !gridNode.isObstacle() && !gridNode.isStart()) {
-                        gridNode.setColor(0, 0, 255);
+                    if (GridNode.getEndingNode() == null && !gridNode.isObstacle() && !gridNode.isStart()) {
+                        gridNode.setColor(ProjectColors.endColor);
                         gridNode.setEnd(true);
 
 
                         //TODO
                         new FloydWarshall();
+                        new DisplayPath();
                         //TODO
 
 
-                    } else if (gridNode.getEndingNode() != null) {
+                    } else if (GridNode.getEndingNode() != null) {
                         System.out.println("end node already exist ");
                     } else
                         System.out.println("node isn't empty ");
 
-                } else if (gridNode == null) {
+                } else {
                     System.out.println("problem");
                 }
 
@@ -103,7 +104,7 @@ public class DropDownMenu {
                     } else
                         System.out.println("node is already empty ");
 
-                } else if (gridNode == null) {
+                } else {
                     System.out.println("problem");
                 }
 
