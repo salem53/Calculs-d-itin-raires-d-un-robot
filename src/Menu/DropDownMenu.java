@@ -12,6 +12,7 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.paint.Color;
 import javafx.stage.Window;
+import utils.AlertWindow;
 import utils.ProjectColors;
 
 
@@ -30,15 +31,20 @@ public class DropDownMenu {
         MenuItem menuItem1 = new MenuItem("Set as obstacle");
         menuItem1.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
+                if (GridNode.pathExist) {
+                    new AlertWindow("GridEditing Error",
+                            "You must clear the shortest path first because editing!");
+                    return;
+                }
                 if (gridNode != null) {
                     if (!gridNode.isObstacle() && !gridNode.isStart() && !gridNode.isEnd()) {
                         gridNode.setColor(ProjectColors.obstacleColor);
                         gridNode.setObstacle(true);
                     } else
-                        System.out.println("node isn't empty ");
+                        new AlertWindow("GridNode error", "Node isn't empty");
 
                 } else {
-                    System.out.println("problem");
+                    new AlertWindow("error", "Unknown error");
                 }
 
             }
@@ -49,17 +55,22 @@ public class DropDownMenu {
         MenuItem menuItem2 = new MenuItem("Set as start");
         menuItem2.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                if (gridNode != null && !GridNode.pathExist) {
+                if (GridNode.pathExist) {
+                    new AlertWindow("GridEditing Error",
+                            "You must clear the shortest path first because editing!");
+                    return;
+                }
+                if (gridNode != null) {
                     if (GridNode.getStartingNode() == null && !gridNode.isObstacle() && !gridNode.isEnd()) {
                         gridNode.setColor(ProjectColors.startColor);
                         gridNode.setStart(true);
                     } else if (GridNode.getStartingNode() != null) {
-                        System.out.println("start node already exist ");
+                        new AlertWindow("GridNode error", "Start node already exists");
                     } else
-                        System.out.println("node isn't empty ");
+                        new AlertWindow("GridNode error", "Node isn't empty");
 
                 } else {
-                    System.out.println("problem");
+                    new AlertWindow("error", "Unknown error");
                 }
 
             }
@@ -68,17 +79,21 @@ public class DropDownMenu {
         MenuItem menuItem3 = new MenuItem("Set as end");
         menuItem3.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
+                if (GridNode.pathExist) {
+                    new AlertWindow("GridEditing Error",
+                            "The shortest path must be cleared");
+                    return;
+                }
                 if (gridNode != null) {
                     if (GridNode.getEndingNode() == null && !gridNode.isObstacle() && !gridNode.isStart()) {
                         gridNode.setColor(ProjectColors.endColor);
                         gridNode.setEnd(true);
                     } else if (GridNode.getEndingNode() != null) {
-                        System.out.println("end node already exist ");
+                        new AlertWindow("GridNode error", "End node already exists");
                     } else
-                        System.out.println("node isn't empty ");
-                }
-                else {
-                    System.out.println("problem");
+                        new AlertWindow("GridNode error", "Node isn't empty");
+                } else {
+                    new AlertWindow("error", "Unknown error");
                 }
 
             }
@@ -96,17 +111,14 @@ public class DropDownMenu {
                             gridNode.setObstacle(false);
 
                         } else
-                            System.out.println("node is already empty ");
+                            new AlertWindow("GridNode error", "Node is already empty");
 
                     } else {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Error");
-                        alert.setHeaderText("Cannot edit the grid");
-                        alert.setContentText("the path must be cleared");
-                        alert.showAndWait();
+                        new AlertWindow("GridEditing error",
+                                "The shortest path must be cleared");
                     }
                 } else {
-                    System.out.println("problem");
+                    new AlertWindow("error", "Unknown error");
                 }
 
             }
