@@ -7,6 +7,7 @@ import Grid.GridSearch;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.paint.Color;
@@ -48,7 +49,7 @@ public class DropDownMenu {
         MenuItem menuItem2 = new MenuItem("Set as start");
         menuItem2.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                if (gridNode != null) {
+                if (gridNode != null && !GridNode.pathExist) {
                     if (GridNode.getStartingNode() == null && !gridNode.isObstacle() && !gridNode.isEnd()) {
                         gridNode.setColor(ProjectColors.startColor);
                         gridNode.setStart(true);
@@ -75,8 +76,8 @@ public class DropDownMenu {
                         System.out.println("end node already exist ");
                     } else
                         System.out.println("node isn't empty ");
-
-                } else {
+                }
+                else {
                     System.out.println("problem");
                 }
 
@@ -87,15 +88,23 @@ public class DropDownMenu {
         menuItem4.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 if (gridNode != null) {
-                    if (gridNode.isStart() || gridNode.isObstacle() || gridNode.isEnd()) {
-                        gridNode.setColor(Color.WHITESMOKE);
-                        gridNode.setStart(false);
-                        gridNode.setEnd(false);
-                        gridNode.setObstacle(false);
+                    if (!GridNode.pathExist) {
+                        if (gridNode.isStart() || gridNode.isObstacle() || gridNode.isEnd()) {
+                            gridNode.setColor(Color.WHITESMOKE);
+                            gridNode.setStart(false);
+                            gridNode.setEnd(false);
+                            gridNode.setObstacle(false);
 
-                    } else
-                        System.out.println("node is already empty ");
+                        } else
+                            System.out.println("node is already empty ");
 
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setHeaderText("Cannot edit the grid");
+                        alert.setContentText("the path must be cleared");
+                        alert.showAndWait();
+                    }
                 } else {
                     System.out.println("problem");
                 }

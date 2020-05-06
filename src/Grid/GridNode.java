@@ -9,6 +9,7 @@ import java.util.List;
 public class GridNode {
 
     public static List<GridNode> nodesList = new ArrayList<>();
+    public static boolean pathExist = false;
     public static int startNodeCount = 0;
     public static int endNodeCount = 0;
 
@@ -41,8 +42,6 @@ public class GridNode {
         this.y = y;
         this.name = String.valueOf(nodeCount++);
         constructShape(radius, color);
-
-
     }
 
     public void constructShape(double radius, Color color) {
@@ -52,7 +51,6 @@ public class GridNode {
         shape.setFill(color);
         this.nodeColor = color;
     }
-
 
     public void setSize(int size) {
         shapeSize = size;

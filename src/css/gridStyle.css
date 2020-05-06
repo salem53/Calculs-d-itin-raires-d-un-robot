@@ -1,6 +1,9 @@
 .resetButton{
     -fx-background-color: #eb4d4b;
 }
-.ExecuteButton{
+.ExecuteButton {
     -fx-background-color: #6ab04c;
+}
+.clearButton{
+    -fx-background-color: #f9ca24;
 }

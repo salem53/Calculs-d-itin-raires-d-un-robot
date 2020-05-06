@@ -7,10 +7,12 @@ public class ProjectColors {
 
     public static Color startColor = Color.GREEN;
 
+    public static Color emptyColor = Color.WHITESMOKE;
+
     public static Color endColor = Color.RED;
 
     public static Color obstacleColor = Color.BLUE;
 
-    public static Color pathColor = Color.GREENYELLOW;
+    public static Color pathColor = Color.INDIGO;
 
 }

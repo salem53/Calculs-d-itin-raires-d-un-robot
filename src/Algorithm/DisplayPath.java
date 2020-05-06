@@ -8,31 +8,28 @@ import utils.ProjectColors;
 
 public class DisplayPath {
 
-    private final Color shortestPathColor = Color.INDIGO;
-
     public DisplayPath() {
         if (!FloydWarshall.isReachable) {
             //TODO
             System.out.println("cant display cause unreachable");
             return;
         }
+        GridNode.pathExist=true;
         removeStartAndEndNodes();
         resetPathColoring();
-        colorShortestPath();
+        colorShortestPath(ProjectColors.pathColor);
     }
 
-    private void removeStartAndEndNodes() {
+    public void removeStartAndEndNodes() {
         try {
             FloydWarshall.preds.remove(GridNode.getStartingNode().getName());
             FloydWarshall.preds.remove(GridNode.getEndingNode().getName());
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-
-
     }
 
-    private GridNode getNodeByName(String s) {
+    private static GridNode getNodeByName(String s) {
         for (GridNode node : GridNode.nodesList) {
             if (node.getName().equals(s)) {
                 return node;
@@ -41,20 +38,17 @@ public class DisplayPath {
         return null;
     }
 
-    private void colorShortestPath() {
+    public static void colorShortestPath(Color color) {
         for (int i = FloydWarshall.preds.size() - 1; i >= 0; i--) {
             try {
-                getNodeByName(FloydWarshall.preds.get(i)).setColor(shortestPathColor);
+                getNodeByName(FloydWarshall.preds.get(i)).setColor(color);
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private void resetPathColoring() {
-        for (GridNode node : GridNode.nodesList) {
-            if (node.getColor() == ProjectColors.pathColor)
-                node.setColor(Color.WHITESMOKE);
-        }
+    public static void resetPathColoring() {
+        colorShortestPath(ProjectColors.emptyColor);
     }
 }

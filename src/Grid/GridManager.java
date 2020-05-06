@@ -17,7 +17,6 @@ public class GridManager {
 
     private double cellSize;
 
-
     private GridPane gridPane;
 
     public void makeGrid(double cellSize, int n, int m, int margin) {
@@ -42,7 +41,6 @@ public class GridManager {
 
 
         gridPane.setStyle("-fx-background-color:whitesmoke; -fx-grid-lines-visible: true");
-
     }
 
 

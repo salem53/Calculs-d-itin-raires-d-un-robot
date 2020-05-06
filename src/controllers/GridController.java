@@ -36,4 +36,9 @@ public class GridController {
         new DisplayPath();
     }
 
+    @FXML
+    private void clearPath() {
+        DisplayPath.resetPathColoring();
+        GridNode.pathExist=false;
+    }
 }

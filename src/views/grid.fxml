@@ -35,10 +35,15 @@
                <font>
                   <Font name="SansSerif Regular" size="16.0" />
                </font></Button>
-            <Button fx:id="resetButton" layoutX="92.0" layoutY="2.0" mnemonicParsing="false" onAction="#reset" styleClass="resetButton" stylesheets="@../css/gridStyle.css" text="Reset">
+            <Button fx:id="clearButton" layoutX="88.0" layoutY="2.0" mnemonicParsing="false" onAction="#clearPath" styleClass="clearButton" stylesheets="@../css/gridStyle.css" text="Clear Path">
                <font>
                   <Font name="SansSerif Regular" size="16.0" />
                </font></Button>
+            <Button fx:id="resetButton" layoutX="197.0" layoutY="2.0" mnemonicParsing="false" onAction="#reset" styleClass="resetButton" stylesheets="@../css/gridStyle.css" text="Reset">
+               <font>
+                  <Font name="SansSerif Regular" size="16.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
 
