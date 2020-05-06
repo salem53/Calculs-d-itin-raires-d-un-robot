@@ -17,15 +17,10 @@ public class GridCellEvent {
     }
 
 
-
     public void setOnRightClick(Node node) {
         node.setOnMousePressed((MouseEvent event) -> {
             if (event.getButton() == MouseButton.SECONDARY) {
-
-                try {
-                    new DropDownMenu(StartController.scene.getWindow(), event.getScreenX(), event.getScreenY(),node);
-                }catch (Exception e)
-                {System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa");}
+                new DropDownMenu(StartController.scene.getWindow(), event.getScreenX(), event.getScreenY(), node);
             }
         });
     }
