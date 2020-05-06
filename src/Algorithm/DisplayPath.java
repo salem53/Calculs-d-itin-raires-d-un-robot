@@ -2,7 +2,9 @@ package Algorithm;
 
 
 import Grid.GridNode;
+import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
+import utils.AlertWindow;
 import utils.ProjectColors;
 
 
@@ -10,11 +12,12 @@ public class DisplayPath {
 
     public DisplayPath() {
         if (!FloydWarshall.isReachable) {
-            //TODO
-            System.out.println("cant display cause unreachable");
+            new AlertWindow(Alert.AlertType.INFORMATION, "Information",
+                    "Shortest Path Error",
+                    "The end node is unreachable!");
             return;
         }
-        GridNode.pathExist=true;
+        GridNode.pathExist = true;
         removeStartAndEndNodes();
         resetPathColoring();
         colorShortestPath(ProjectColors.pathColor);
@@ -49,6 +52,10 @@ public class DisplayPath {
     }
 
     public static void resetPathColoring() {
-        colorShortestPath(ProjectColors.emptyColor);
+        for (GridNode node : GridNode.nodesList) {
+            if (node.getColor() == ProjectColors.pathColor) {
+                node.setColor(Color.WHITESMOKE);
+            }
+        }
     }
 }

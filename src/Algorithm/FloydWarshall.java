@@ -2,6 +2,8 @@ package Algorithm;
 
 import Grid.GridNode;
 import RelationManager.*;
+import javafx.scene.control.Alert;
+import utils.AlertWindow;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,13 +32,16 @@ public class FloydWarshall {
 
     public static List<String> preds = new ArrayList<>();
 
-    private List<GridNode> gridNodeCopy = new ArrayList<>();
+    private final List<GridNode> gridNodeCopy = new ArrayList<>();
 
     public FloydWarshall() {
         preds.clear();
+
+        isReachable = true;
         copyToList();
         new SetupRelations(gridNodeCopy);
-        System.out.println("relation list size:" + Relation.RelationsList.size());
+
+
         this.size = gridNodeCopy.size();
         P = new String[size + 1][size + 1];
         distance = new int[size][size];
@@ -181,8 +186,6 @@ public class FloydWarshall {
         while (true) {
             String pred = P[beginIndex][endIndex];
             if (pred.equals("0")) {
-                //TODO make a window appear that handles the error of no path existence
-                System.out.println("Unreachable!");
                 isReachable = false;
                 return;
             }
