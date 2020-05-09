@@ -41,7 +41,7 @@ public class GridController {
 
     @FXML
     private void clearPath() {
-        DisplayPath.resetPathColoring();
+        GridNode.resetAllPane();
         GridNode.pathExist=false;
     }
 
