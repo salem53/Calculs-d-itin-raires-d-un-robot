@@ -4,10 +4,14 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
+import javafx.scene.image.Image;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
+
+import javax.swing.text.html.ImageView;
 
 
 public class GridManager {
@@ -60,9 +64,10 @@ public class GridManager {
         this.m = m;
     }
 
-    public void addtogrid(Circle shape, int x, int y) {
-        gridPane.add(shape, x, y);
+    public void addtogrid(StackPane pane, int x, int y) {
+        gridPane.add(pane, x, y);
     }
+
 
     public GridPane getGrid() {
         return this.gridPane;

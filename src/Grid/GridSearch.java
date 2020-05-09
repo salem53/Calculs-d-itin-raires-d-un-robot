@@ -1,12 +1,12 @@
 package Grid;
 
-import javafx.scene.shape.Circle;
+import javafx.scene.layout.StackPane;
+
 
 public class GridSearch {
-    public static GridNode lookForNode(javafx.scene.Node shape) {
-        if (!(shape instanceof Circle)) return null;
+    public static GridNode lookForNode(StackPane pane) {
         for (GridNode gridNode : GridNode.nodesList) {
-            if (gridNode.getShape().equals(shape)) {
+            if (gridNode.getPane() == pane) {
                 return gridNode;
             }
         }

@@ -6,18 +6,21 @@ import controllers.StartController;
 import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import main.Main;
+
+import java.util.Stack;
 
 public class GridCellEvent {
 
     public GridCellEvent() {
-        for (Node node : StartController.gridManager.getGrid().getChildren()) {
-            setOnRightClick(node);
+        for (GridNode gridNode : GridNode.nodesList) {
+            setOnRightClick(gridNode.getPane());
         }
     }
 
 
-    public void setOnRightClick(Node node) {
+    public void setOnRightClick(StackPane node) {
         node.setOnMousePressed((MouseEvent event) -> {
             if (event.getButton() == MouseButton.SECONDARY) {
                 new DropDownMenu(StartController.scene.getWindow(), event.getScreenX(), event.getScreenY(), node);

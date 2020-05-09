@@ -1,5 +1,8 @@
 package Grid;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
@@ -10,9 +13,6 @@ public class GridNode {
 
     public static List<GridNode> nodesList = new ArrayList<>();
     public static boolean pathExist = false;
-    public static int startNodeCount = 0;
-    public static int endNodeCount = 0;
-
 
     public static int nodeCount = 1;
 
@@ -20,50 +20,44 @@ public class GridNode {
     protected boolean isStart;
     protected boolean isEnd;
 
-    protected Color nodeColor;
+    public StackPane getPane() {
+        return pane;
+    }
+
+    public void setPane(StackPane pane) {
+        this.pane = pane;
+    }
+
+    public Image getImage() {
+        return this.imageView.getImage();
+    }
+
+    protected StackPane pane;
+
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     protected String name;
 
-    protected double x, y, shapeSize;
-    protected Circle shape;
+    protected double x, y;
+    protected ImageView imageView;
 
-
-    public GridNode(double x, double y,
-                    double radius, Color color) { //used only this
+    public GridNode(double x, double y, Image image) { //used only this
         this.x = x;
         this.y = y;
+        pane = new StackPane();
+        imageView = new ImageView();
         this.name = String.valueOf(nodeCount++);
-        constructShape(radius, color);
+        setPaneChild(image);
     }
 
-    public void constructShape(double radius, Color color) {
-        shape = new Circle();
-        shapeSize = radius;
-        shape.setRadius(shapeSize);
-        shape.setFill(color);
-        this.nodeColor = color;
-    }
-
-    public void setSize(int size) {
-        shapeSize = size;
-        shape.setRadius(shapeSize);
-    }
-
-    public void setColor(Color color) {
-        shape.setFill(color);
-        this.nodeColor = color;
-    }
-
-    public Color getColor() {
-        return this.nodeColor;
+    public void setPaneChild(Image image) {
+        imageView.setImage(image);
+        imageView.setVisible(image != GridImages.normal);
+        pane.getChildren().clear();
+        pane.getChildren().add(imageView);
     }
 
     public double getX() {
@@ -72,7 +66,6 @@ public class GridNode {
 
     public void setX(int x) {
         this.x = x;
-        shape.setCenterX(x);
     }
 
     public double getY() {
@@ -82,11 +75,10 @@ public class GridNode {
 
     public void setY(int y) {
         this.y = y;
-        shape.setCenterY(y);
     }
 
-    public Circle getShape() {
-        return shape;
+    public ImageView getImageView() {
+        return imageView;
     }
 
     public boolean isStart() {
@@ -94,6 +86,10 @@ public class GridNode {
     }
 
     public void setStart(boolean start) {
+        if (start)
+            setPaneChild(GridImages.robotImage);
+        else
+            setPaneChild(GridImages.normal);
         isStart = start;
     }
 
@@ -102,6 +98,10 @@ public class GridNode {
     }
 
     public void setEnd(boolean end) {
+        if (end)
+            setPaneChild(GridImages.endImage);
+        else
+            setPaneChild(GridImages.normal);
         isEnd = end;
     }
 
@@ -110,7 +110,21 @@ public class GridNode {
     }
 
     public void setObstacle(boolean obstacle) {
+        if (obstacle)
+            setPaneChild(GridImages.obstacleImage);
+        else
+            setPaneChild(GridImages.normal);
         isObstacle = obstacle;
+    }
+
+    public void setPathImage() {
+        setPaneChild(GridImages.pathImage);
+    }
+
+    public static void resetAllPane() {
+        for (GridNode gridNode : nodesList)
+            if (gridNode.getImage() == GridImages.pathImage)
+                gridNode.setPaneChild(GridImages.normal);
     }
 
     public static GridNode getStartingNode() {
