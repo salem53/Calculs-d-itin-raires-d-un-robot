@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import utils.AlertWindow;
 
 import java.io.IOException;
 
@@ -19,7 +20,7 @@ public class StartController {
 
     private static final int MIN_VALUE = 4;
     private static final int MAX_VALUE = 20;
-    private static final double CELL_SIZE = 100;
+    public static final double CELL_SIZE = 100;
     private double xOffset = 0;
     private double yOffset = 0;
     public static Scene scene;
@@ -43,8 +44,6 @@ public class StartController {
         if (isInputValid(width) && isInputValid(height)) {
             int widthValue = (Integer.parseInt(width.getText()));
             int heightValue = (Integer.parseInt(height.getText()));
-            System.out.println("K");
-
             Parent root = FXMLLoader.load(getClass().getResource("../views/grid.fxml"));
 
             Stage stage = (Stage) closeButton.getScene().getWindow();
@@ -71,7 +70,10 @@ public class StartController {
                 }
             });*/
 
-        } else System.out.println("ERR");
+        } else
+            new AlertWindow("Error",
+                    "Unknown error");
+
     }
 
     // Validates the user input.
@@ -82,22 +84,14 @@ public class StartController {
                 int d = Integer.parseInt(t.getText());
                 if (MIN_VALUE <= d && d <= MAX_VALUE) {
                     b = true;
-                } else{
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("Input Error");
-                    alert.setContentText("Must be between 4 and 20");
+                } else {
+                    new AlertWindow("Input error",
+                            "Must be between 4 and 20");
 
-                    alert.showAndWait();
-                    System.out.println("Must be between 4 and 20");
                 }
             } catch (NumberFormatException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Input Error");
-                alert.setContentText("Must be a number");
+                new AlertWindow("Input error", "Must be a number");
 
-                alert.showAndWait();
             }
         }
         return b;
