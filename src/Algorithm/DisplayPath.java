@@ -1,6 +1,7 @@
 package Algorithm;
 
 
+import Grid.GridImages;
 import Grid.GridNode;
 import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
@@ -19,8 +20,8 @@ public class DisplayPath {
         }
         GridNode.pathExist = true;
         removeStartAndEndNodes();
-        resetPathColoring();
-        colorShortestPath(ProjectColors.pathColor);
+        GridNode.resetAllPane();
+        colorShortestPath();
     }
 
     public void removeStartAndEndNodes() {
@@ -41,21 +42,14 @@ public class DisplayPath {
         return null;
     }
 
-    public static void colorShortestPath(Color color) {
+    public static void colorShortestPath() {
         for (int i = FloydWarshall.preds.size() - 1; i >= 0; i--) {
             try {
-                getNodeByName(FloydWarshall.preds.get(i)).setColor(color);
+                getNodeByName(FloydWarshall.preds.get(i)).setPaneChild(GridImages.pathImage);
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public static void resetPathColoring() {
-        for (GridNode node : GridNode.nodesList) {
-            if (node.getColor() == ProjectColors.pathColor) {
-                node.setColor(Color.WHITESMOKE);
-            }
-        }
-    }
 }
