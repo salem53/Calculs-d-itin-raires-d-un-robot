@@ -19,7 +19,7 @@ public class StartController {
 
     private static final int MIN_VALUE = 4;
     private static final int MAX_VALUE = 20;
-    private static final double CELL_SIZE = 100;
+    private static double CELL_SIZE = 100;
     public static Scene scene;
     public static final GridManager gridManager = new GridManager();
 
@@ -46,8 +46,16 @@ public class StartController {
             Parent root = FXMLLoader.load(getClass().getResource("../views/grid.fxml"));
             Stage stage = new Stage();
 
-            gridManager.makeGrid(CELL_SIZE, heightValue, widthValue, 20);
-            scene = new Scene(root, CELL_SIZE * widthValue + 40, CELL_SIZE * heightValue + 96);
+            if (widthValue > 15 || heightValue > 7) {
+                gridManager.makeGrid(CELL_SIZE - 30, heightValue, widthValue, 20);
+                scene = new Scene(root,
+                        (CELL_SIZE - 30) * widthValue + 40, (CELL_SIZE - 30) * heightValue + 96);
+                StartController.CELL_SIZE -= 30;
+            } else {
+                gridManager.makeGrid(CELL_SIZE, heightValue, widthValue, 20);
+                scene = new Scene(root,
+                        CELL_SIZE * widthValue + 40, CELL_SIZE * heightValue + 96);
+            }
             VBox vbox = (VBox) scene.lookup("#vbox");
             vbox.getChildren().add(gridManager.getGrid());
             new SetupGridNodes(gridManager);
