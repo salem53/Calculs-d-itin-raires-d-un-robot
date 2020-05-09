@@ -2,6 +2,7 @@ package Menu;
 
 import Algorithm.DisplayPath;
 import Algorithm.FloydWarshall;
+import Grid.GridImages;
 import Grid.GridNode;
 import Grid.GridSearch;
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Window;
 import utils.AlertWindow;
@@ -22,11 +24,11 @@ public class DropDownMenu {
     private final ContextMenu menu;
     /*private final String[] menuList = {"Set as obstacle", "Set as start", "Set as end", "delete node"};*/
 
-    public DropDownMenu(Window window, double x, double y, Node node) {
+    public DropDownMenu(Window window, double x, double y, StackPane pane) {
 
         menu = new ContextMenu();
         menu.setAutoHide(true);
-        GridNode gridNode = GridSearch.lookForNode(node);
+        GridNode gridNode = GridSearch.lookForNode(pane);
         //add menuItem "set as obstacle" to the menu and handle it's event
         MenuItem menuItem1 = new MenuItem("Set as obstacle");
         menuItem1.setOnAction(new EventHandler<ActionEvent>() {
@@ -38,7 +40,7 @@ public class DropDownMenu {
                 }
                 if (gridNode != null) {
                     if (!gridNode.isObstacle() && !gridNode.isStart() && !gridNode.isEnd()) {
-                        gridNode.setColor(ProjectColors.obstacleColor);
+                        gridNode.setPaneChild(GridImages.obstacleImage);
                         gridNode.setObstacle(true);
                     } else
                         new AlertWindow("GridNode error", "Node isn't empty");
@@ -62,7 +64,7 @@ public class DropDownMenu {
                 }
                 if (gridNode != null) {
                     if (GridNode.getStartingNode() == null && !gridNode.isObstacle() && !gridNode.isEnd()) {
-                        gridNode.setColor(ProjectColors.startColor);
+                        gridNode.setPaneChild(GridImages.robotImage);
                         gridNode.setStart(true);
                     } else if (GridNode.getStartingNode() != null) {
                         new AlertWindow("GridNode error", "Start node already exists");
@@ -86,7 +88,7 @@ public class DropDownMenu {
                 }
                 if (gridNode != null) {
                     if (GridNode.getEndingNode() == null && !gridNode.isObstacle() && !gridNode.isStart()) {
-                        gridNode.setColor(ProjectColors.endColor);
+                        gridNode.setPaneChild(GridImages.endImage);
                         gridNode.setEnd(true);
                     } else if (GridNode.getEndingNode() != null) {
                         new AlertWindow("GridNode error", "End node already exists");
@@ -105,7 +107,7 @@ public class DropDownMenu {
                 if (gridNode != null) {
                     if (!GridNode.pathExist) {
                         if (gridNode.isStart() || gridNode.isObstacle() || gridNode.isEnd()) {
-                            gridNode.setColor(Color.WHITESMOKE);
+                            gridNode.setPaneChild(GridImages.normal);
                             gridNode.setStart(false);
                             gridNode.setEnd(false);
                             gridNode.setObstacle(false);
