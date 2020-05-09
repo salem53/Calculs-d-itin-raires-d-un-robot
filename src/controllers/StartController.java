@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -20,9 +19,7 @@ public class StartController {
 
     private static final int MIN_VALUE = 4;
     private static final int MAX_VALUE = 20;
-    public static final double CELL_SIZE = 100;
-    private double xOffset = 0;
-    private double yOffset = 0;
+    private static final double CELL_SIZE = 100;
     public static Scene scene;
     public static final GridManager gridManager = new GridManager();
 
@@ -44,57 +41,39 @@ public class StartController {
         if (isInputValid(width) && isInputValid(height)) {
             int widthValue = (Integer.parseInt(width.getText()));
             int heightValue = (Integer.parseInt(height.getText()));
+
+            //make the grid
             Parent root = FXMLLoader.load(getClass().getResource("../views/grid.fxml"));
+            Stage stage = new Stage();
 
-            Stage stage = (Stage) closeButton.getScene().getWindow();
             gridManager.makeGrid(CELL_SIZE, heightValue, widthValue, 20);
-
             scene = new Scene(root, CELL_SIZE * widthValue + 40, CELL_SIZE * heightValue + 96);
             VBox vbox = (VBox) scene.lookup("#vbox");
             vbox.getChildren().add(gridManager.getGrid());
             new SetupGridNodes(gridManager);
             stage.setScene(scene);
+            ((Stage) closeButton.getScene().getWindow()).close();
             stage.show();
-
-            //make the window movable
-           /* root.setOnMousePressed(event -> {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            });
-
-            root.setOnMouseDragged(new EventHandler<>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    stage.setX(event.getScreenX() - xOffset);
-                    stage.setY(event.getScreenY() - yOffset);
-                }
-            });*/
-
-        } else
-            new AlertWindow("Error",
-                    "Unknown error");
-
+        }
     }
 
     // Validates the user input.
     private boolean isInputValid(TextField t) {
-        boolean b = false;
         if (!(t.getText() == null || t.getText().length() == 0)) {
             try {
                 int d = Integer.parseInt(t.getText());
                 if (MIN_VALUE <= d && d <= MAX_VALUE) {
-                    b = true;
+                    return true;
                 } else {
-                    new AlertWindow("Input error",
-                            "Must be between 4 and 20");
-
+                    new AlertWindow("Input Error", "Must be between 4 and 20");
                 }
             } catch (NumberFormatException e) {
-                new AlertWindow("Input error", "Must be a number");
-
+                new AlertWindow("Input Error","Must be between a number");
             }
+        } else {
+            new AlertWindow("Input Error", "You must choose width and height");
         }
-        return b;
+        return false;
     }
 
 }
