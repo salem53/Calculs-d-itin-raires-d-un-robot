@@ -60,6 +60,7 @@ public class StartController {
             vbox.getChildren().add(gridManager.getGrid());
             new SetupGridNodes(gridManager);
             stage.setScene(scene);
+            stage.setTitle("Robot Path Calculator");
             ((Stage) closeButton.getScene().getWindow()).close();
             stage.show();
         }
