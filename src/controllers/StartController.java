@@ -18,8 +18,8 @@ import java.io.IOException;
 public class StartController {
 
     private static final int MIN_VALUE = 4;
-    private static final int MAX_VALUE = 20;
-    private static double CELL_SIZE = 100;
+    private static final int MAX_VALUE = 10;
+    public static double CELL_SIZE = 100;
     public static Scene scene;
     public static final GridManager gridManager = new GridManager();
 
