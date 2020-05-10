@@ -4,12 +4,10 @@ import Algorithm.DisplayPath;
 import Algorithm.FloydWarshall;
 import Grid.GridNode;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import utils.AlertWindow;
+import utils.StartStage;
 
 public class GridController {
     @FXML
@@ -19,11 +17,8 @@ public class GridController {
     private void reset() throws Exception {
         GridNode.nodesList.clear();
         GridNode.pathExist=false;
-        Stage startstage = new Stage();
-        startstage.initStyle(StageStyle.TRANSPARENT);
-        startstage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../views/start.fxml")), 762, 542));
         ((Stage) resetButton.getScene().getWindow()).close();
-        startstage.show();
+        new StartStage(new Stage());
 
     }
 

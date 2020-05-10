@@ -4,9 +4,7 @@ package Algorithm;
 import Grid.GridImages;
 import Grid.GridNode;
 import javafx.scene.control.Alert;
-import javafx.scene.paint.Color;
 import utils.AlertWindow;
-import utils.ProjectColors;
 
 
 public class DisplayPath {

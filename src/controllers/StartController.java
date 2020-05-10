@@ -74,7 +74,7 @@ public class StartController {
                 if (MIN_VALUE <= d && d <= MAX_VALUE) {
                     return true;
                 } else {
-                    new AlertWindow("Input Error", "Must be between 4 and 20");
+                    new AlertWindow("Input Error", "Must be between 4 and 10");
                 }
             } catch (NumberFormatException e) {
                 new AlertWindow("Input Error","Must be between a number");

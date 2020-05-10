@@ -1,21 +1,15 @@
 package Menu;
 
-import Algorithm.DisplayPath;
-import Algorithm.FloydWarshall;
 import Grid.GridImages;
 import Grid.GridNode;
 import Grid.GridSearch;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Window;
 import utils.AlertWindow;
-import utils.ProjectColors;
 
 
 public class DropDownMenu {
