@@ -126,41 +126,6 @@ public class FloydWarshall {
                     }
                 }
             }
-
-
-            /*
-            For testing purposes
-            printDistance();
-            printP();
-            System.out.print("\n\n");
-            */
-
-        }
-
-
-    }
-
-    //For testing purposes, display distance matrix
-    private void printDistance() {
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                if (distance[i][j] == INF) {
-                    System.out.print("INF ");
-                    continue;
-                }
-                System.out.print(distance[i][j] + " ");
-            }
-            System.out.print("\n");
-        }
-    }
-
-    //For testing purposes, display P matrix
-    private void printP() {
-        for (int i = 0; i < size + 1; i++) {
-            for (int j = 0; j < size + 1; j++) {
-                System.out.print(P[i][j] + " ");
-            }
-            System.out.print("\n");
         }
     }
 
@@ -205,13 +170,5 @@ public class FloydWarshall {
         }
 
     }
-
-    //for testing purposes, display path in console
-    private void displayPath() {
-        for (int i = preds.size() - 1; i >= 0; i--) {
-            System.out.print(preds.get(i) + " ");
-        }
-    }
-
 
 }
