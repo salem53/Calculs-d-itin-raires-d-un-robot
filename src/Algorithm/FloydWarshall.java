@@ -109,7 +109,6 @@ public class FloydWarshall {
         }
         executeFloyd(nodesList, relationsList);
         ExtractPath(GridNode.getStartingNode(), GridNode.getEndingNode());
-        displayPath();
 
     }
 
