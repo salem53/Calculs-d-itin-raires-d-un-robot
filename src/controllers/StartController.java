@@ -1,5 +1,6 @@
 package controllers;
 
+import Grid.GridImages;
 import Grid.GridManager;
 import Grid.SetupGridNodes;
 import javafx.fxml.FXML;
@@ -50,8 +51,9 @@ public class StartController {
             } else {
                 StartController.CELL_SIZE = 100;
             }
+            new GridImages().initImages();
             gridManager.makeGrid(CELL_SIZE, heightValue, widthValue, 20);
-            scene = new Scene(root,CELL_SIZE * widthValue + 40, CELL_SIZE * heightValue + 96);
+            scene = new Scene(root, CELL_SIZE * widthValue + 40, CELL_SIZE * heightValue + 96);
             VBox vbox = (VBox) scene.lookup("#vbox");
             vbox.getChildren().add(gridManager.getGrid());
             new SetupGridNodes(gridManager);
@@ -73,7 +75,7 @@ public class StartController {
                     new AlertWindow("Input Error", "Must be between 4 and 10");
                 }
             } catch (NumberFormatException e) {
-                new AlertWindow("Input Error","Must be between a number");
+                new AlertWindow("Input Error", "Must be between a number");
             }
         } else {
             new AlertWindow("Input Error", "You must choose width and height");
