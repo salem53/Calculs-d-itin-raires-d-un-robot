@@ -6,15 +6,27 @@ import utils.ImageLoader;
 public class GridImages {
 
 
-    public static Image robotImage(){ return ImageLoader.loadImage("robot"); }
+    public void initImages() {
+        robotImage = ImageLoader.loadImage("robot");
+        obstacleImage = ImageLoader.loadImage("security");
+        endImage = ImageLoader.loadImage("finish");
+        pathImage = ImageLoader.loadImage("path");
+        normal = ImageLoader.loadImage("normal");
+    }
 
-    public static Image obstacleImage(){ return ImageLoader.loadImage("security"); }
+    public static Image robotImage;
 
-    public static Image endImage(){ return ImageLoader.loadImage("finish"); }
 
-    public static Image pathImage() { return ImageLoader.loadImage("path"); }
+    public static Image obstacleImage;
 
-    public static Image normal = ImageLoader.loadImage("normal");
+
+    public static Image endImage;
+
+
+    public static Image pathImage;
+
+
+    public static Image normal;
 
 
 }
