@@ -1,6 +1,5 @@
 package Menu;
 
-import Grid.GridImages;
 import Grid.GridNode;
 import Grid.GridSearch;
 import javafx.event.ActionEvent;
@@ -34,7 +33,6 @@ public class DropDownMenu {
                 }
                 if (gridNode != null) {
                     if (!gridNode.isObstacle() && !gridNode.isStart() && !gridNode.isEnd()) {
-                        gridNode.setPaneChild(GridImages.obstacleImage);
                         gridNode.setObstacle(true);
                     } else
                         new AlertWindow("GridNode error", "Node isn't empty");
@@ -58,7 +56,6 @@ public class DropDownMenu {
                 }
                 if (gridNode != null) {
                     if (GridNode.getStartingNode() == null && !gridNode.isObstacle() && !gridNode.isEnd()) {
-                        gridNode.setPaneChild(GridImages.robotImage);
                         gridNode.setStart(true);
                     } else if (GridNode.getStartingNode() != null) {
                         new AlertWindow("GridNode error", "Start node already exists");
@@ -82,7 +79,6 @@ public class DropDownMenu {
                 }
                 if (gridNode != null) {
                     if (GridNode.getEndingNode() == null && !gridNode.isObstacle() && !gridNode.isStart()) {
-                        gridNode.setPaneChild(GridImages.endImage);
                         gridNode.setEnd(true);
                     } else if (GridNode.getEndingNode() != null) {
                         new AlertWindow("GridNode error", "End node already exists");
@@ -101,7 +97,6 @@ public class DropDownMenu {
                 if (gridNode != null) {
                     if (!GridNode.pathExist) {
                         if (gridNode.isStart() || gridNode.isObstacle() || gridNode.isEnd()) {
-                            gridNode.setPaneChild(GridImages.normal);
                             gridNode.setStart(false);
                             gridNode.setEnd(false);
                             gridNode.setObstacle(false);
@@ -126,11 +121,6 @@ public class DropDownMenu {
         menu.getItems().add(menuItem4);
 
 
-        /*for (String text : menuList) {
-            MenuItem menuItem = new MenuItem(text);
-            menu.getItems().add(menuItem);
-        }*/
-        //show
         menu.show(window, x, y);
     }
 

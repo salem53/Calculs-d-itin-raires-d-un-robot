@@ -43,7 +43,7 @@ public class DisplayPath {
     public static void colorShortestPath() {
         for (int i = FloydWarshall.preds.size() - 1; i >= 0; i--) {
             try {
-                getNodeByName(FloydWarshall.preds.get(i)).setPaneChild(GridImages.pathImage);
+                getNodeByName(FloydWarshall.preds.get(i)).setPaneChild(GridImages.pathImage());
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }

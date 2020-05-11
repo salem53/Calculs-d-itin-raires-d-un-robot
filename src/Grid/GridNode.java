@@ -87,7 +87,7 @@ public class GridNode {
 
     public void setStart(boolean start) {
         if (start)
-            setPaneChild(GridImages.robotImage);
+            setPaneChild(GridImages.robotImage());
         else
             setPaneChild(GridImages.normal);
         isStart = start;
@@ -99,7 +99,7 @@ public class GridNode {
 
     public void setEnd(boolean end) {
         if (end)
-            setPaneChild(GridImages.endImage);
+            setPaneChild(GridImages.endImage());
         else
             setPaneChild(GridImages.normal);
         isEnd = end;
@@ -111,19 +111,19 @@ public class GridNode {
 
     public void setObstacle(boolean obstacle) {
         if (obstacle)
-            setPaneChild(GridImages.obstacleImage);
+            setPaneChild(GridImages.obstacleImage());
         else
             setPaneChild(GridImages.normal);
         isObstacle = obstacle;
     }
 
     public void setPathImage() {
-        setPaneChild(GridImages.pathImage);
+        setPaneChild(GridImages.pathImage());
     }
 
     public static void resetAllPane() {
         for (GridNode gridNode : nodesList)
-            if (gridNode.getImage() == GridImages.pathImage)
+            if (gridNode.getImage() == GridImages.pathImage())
                 gridNode.setPaneChild(GridImages.normal);
     }
 
